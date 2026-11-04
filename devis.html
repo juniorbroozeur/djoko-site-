@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demander un devis — Djoko, fournisseur textile pénitentiaire au Gabon</title>
+<meta name="description" content="Demandez un devis pour l'équipement textile de votre établissement : uniformes, sous-vêtements, chaussants et literie. Réponse sous 48 heures ouvrées.">
+<link rel="canonical" href="https://www.djoko.store/devis.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Djoko">
+<meta property="og:title" content="Demander un devis — Djoko, fournisseur textile pénitentiaire au Gabon">
+<meta property="og:description" content="Demandez un devis pour l'équipement textile de votre établissement : uniformes, sous-vêtements, chaussants et literie. Réponse sous 48 heures ouvrées.">
+<meta property="og:url" content="https://www.djoko.store/devis.html">
+<meta property="og:image" content="https://www.djoko.store/images/partage.jpg">
+<meta name="theme-color" content="#1F4D40">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Jost:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/djoko.css">
+
+</head>
+<body>
+<a class="evite" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="shell entete__interieur">
+    <a class="marque" href="index.html">
+      <img class="marque__sigle" src="images/logo-monogramme.png" alt="" width="256" height="256" aria-hidden="true">
+      <span>
+        <span class="marque__nom">DJOKO.</span>
+        <span class="marque__baseline">Pour une prison plus humaine</span>
+      </span>
+    </a>
+    <button class="bascule" aria-expanded="false" aria-controls="navigation">Menu</button>
+    <nav class="navigation" id="navigation" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="a-propos.html">Qui sommes-nous</a>
+        <a href="produits.html">Nos produits</a>
+        <a href="personnalisation.html">Personnalisation</a>
+      <a class="bouton bouton--plein" href="devis.html" aria-current="page">Demander un devis</a>
+    </nav>
+  </div>
+</header>
+<main id="contenu">
+<section class="section">
+  <div class="shell">
+    <div class="entete-section revele">
+      <span class="matricule">Demande de devis</span>
+      <h2>Dites-nous ce dont votre établissement a besoin</h2>
+      <p>Renseignez les articles et les quantités estimées. Nous vous répondons sous 48 heures
+        ouvrées avec une proposition chiffrée et un délai de livraison ferme.</p>
+    </div>
+
+    <form id="formulaire-devis" novalidate>
+      <div class="formulaire">
+        <div class="champ">
+          <label for="etablissement">Établissement ou organisation *</label>
+          <input type="text" id="etablissement" name="etablissement" required autocomplete="organization">
+        </div>
+        <div class="champ">
+          <label for="contact">Nom du responsable *</label>
+          <input type="text" id="contact" name="contact" required autocomplete="name">
+        </div>
+        <div class="champ">
+          <label for="courriel">Adresse e-mail *</label>
+          <input type="email" id="courriel" name="courriel" required autocomplete="email">
+        </div>
+        <div class="champ">
+          <label for="telephone">Téléphone *</label>
+          <input type="tel" id="telephone" name="telephone" required autocomplete="tel">
+        </div>
+        <div class="champ">
+          <label for="ville">Ville de livraison</label>
+          <input type="text" id="ville" name="ville" autocomplete="address-level2" placeholder="Libreville, Port-Gentil…">
+        </div>
+        <div class="champ">
+          <label for="echeance">Échéance souhaitée</label>
+          <select id="echeance" name="echeance">
+            <option value="">Sans contrainte particulière</option>
+            <option>Sous 15 jours</option>
+            <option>Sous 1 mois</option>
+            <option>Sous 3 mois</option>
+            <option>Marché pluriannuel</option>
+          </select>
+        </div>
+
+        <div class="champ champ--large">
+          <label>Articles et quantités estimées</label>
+          <p class="champ__aide">Laissez vide les références qui ne vous concernent pas.</p>
+          <div class="panier">
+        <div class="panier__ligne">
+          <span>Chemise homme &amp; femme <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-01</span></span>
+          <input type="number" min="0" step="1" name="qte-chemise" aria-label="Quantité — Chemise homme et femme" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Tee-shirt homme &amp; femme <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-02</span></span>
+          <input type="number" min="0" step="1" name="qte-teeshirt" aria-label="Quantité — Tee-shirt homme et femme" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Pantalon homme &amp; femme <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-03</span></span>
+          <input type="number" min="0" step="1" name="qte-pantalon" aria-label="Quantité — Pantalon homme et femme" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Sous-vêtement homme <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-04</span></span>
+          <input type="number" min="0" step="1" name="qte-sous-vetement-homme" aria-label="Quantité — Sous-vêtement homme" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Sous-vêtement femme <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-05</span></span>
+          <input type="number" min="0" step="1" name="qte-sous-vetement-femme" aria-label="Quantité — Sous-vêtement femme" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Soutien-gorge femme <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-06</span></span>
+          <input type="number" min="0" step="1" name="qte-soutien-gorge" aria-label="Quantité — Soutien-gorge femme" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Chaussettes <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-07</span></span>
+          <input type="number" min="0" step="1" name="qte-chaussettes" aria-label="Quantité — Chaussettes" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Chaussures <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-08</span></span>
+          <input type="number" min="0" step="1" name="qte-chaussures" aria-label="Quantité — Chaussures" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Drap <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-09</span></span>
+          <input type="number" min="0" step="1" name="qte-drap" aria-label="Quantité — Drap" placeholder="0">
+        </div>
+        <div class="panier__ligne">
+          <span>Taie d'oreiller <span style="font-family:var(--mono);font-size:.75rem;color:var(--brun)">DJK-10</span></span>
+          <input type="number" min="0" step="1" name="qte-taie-oreiller" aria-label="Quantité — Taie d'oreiller" placeholder="0">
+        </div>
+          </div>
+        </div>
+
+        <div class="champ champ--large">
+          <label for="personnalisation">Personnalisation souhaitée</label>
+          <p class="champ__aide">Broderie, marquage par établissement, coloris imposés, tailles hors gamme…</p>
+          <textarea id="personnalisation" name="personnalisation" style="min-height:110px"></textarea>
+        </div>
+
+        <div class="champ champ--large">
+          <label for="message">Précisions complémentaires</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
+
+        <div class="champ champ--large" aria-hidden="true" style="position:absolute;left:-9999px">
+          <label for="site-web">Ne pas remplir</label>
+          <input type="text" id="site-web" name="site-web" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="champ champ--large">
+          <p class="champ__aide">Les informations transmises servent uniquement à traiter votre
+            demande. Voir les <a href="mentions-legales.html">mentions légales</a>.</p>
+          <p><button type="submit" class="bouton bouton--plein">Envoyer la demande</button></p>
+        </div>
+      </div>
+    </form>
+
+    <div class="message" id="confirmation-devis" role="status" tabindex="-1" hidden>
+      <strong>Demande enregistrée.</strong> Nous revenons vers vous sous 48 heures ouvrées à
+      l'adresse indiquée. Pour une demande urgente, appelez le +241 00 00 00 00.
+    </div>
+  </div>
+</section>
+
+<section class="section section--creme">
+  <div class="shell">
+    <div class="entete-section revele" style="margin-bottom:2.5rem">
+      <span class="matricule">Nous joindre</span>
+      <h2>Autrement que par le formulaire</h2>
+    </div>
+    <div class="coordonnees revele">
+      <div class="coordonnee">
+        <h3>Adresse e-mail</h3>
+        <p><a href="mailto:djoko4371@gmail.com">djoko4371@gmail.com</a></p>
+      </div>
+      <div class="coordonnee">
+        <h3>Téléphone</h3>
+        <p><a href="tel:+24100000000">+241 00 00 00 00</a></p>
+      </div>
+      <div class="coordonnee">
+        <h3>Zone d'intervention</h3>
+        <p>Libreville, Port-Gentil<br>et l'ensemble du territoire gabonais</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pied">
+  <div class="shell">
+    <div class="pied__grille">
+      <div>
+        <span class="marque__nom" style="font-family:var(--serif);font-size:1.5rem;color:var(--creme)">DJOKO.</span>
+        <p style="margin:.6rem 0 0;max-width:34ch">Fourniture de vêtements et d'équipements textiles
+        pour les établissements pénitentiaires et les institutions publiques du Gabon.</p>
+      </div>
+      <div>
+        <h3>Le site</h3>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="a-propos.html">Qui sommes-nous</a></li>
+          <li><a href="produits.html">Nos produits</a></li>
+          <li><a href="personnalisation.html">Personnalisation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Gamme</h3>
+        <ul>
+          <li><a href="produits.html#chemise">Chemises</a></li>
+          <li><a href="produits.html#pantalon">Pantalons</a></li>
+          <li><a href="produits.html#chaussures">Chaussures</a></li>
+          <li><a href="produits.html#drap">Literie</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Nous joindre</h3>
+        <ul>
+          <li><a href="mailto:djoko4371@gmail.com">djoko4371@gmail.com</a></li>
+          <li><a href="tel:+24100000000">+241 00 00 00 00</a></li>
+          <li>Libreville &middot; Port-Gentil, Gabon</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied__bas">
+      <span>&copy; <span data-annee>2026</span> Djoko &middot; Tous droits réservés</span>
+      <a href="mentions-legales.html">Mentions légales et confidentialité</a>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/djoko.js" defer></script>
+</body>
+</html>

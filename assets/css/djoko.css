@@ -1,0 +1,477 @@
+/* ==========================================================================
+   DJOKO — Feuille de style principale
+   Identité : vert forêt (logo) · crème · brun terre · graphite
+   Signature : la pastille matricule, reprise du numéro cousu sur l'uniforme
+   ========================================================================== */
+
+/* --- 1. Jetons ---------------------------------------------------------- */
+:root {
+  --vert:        #1F4D40;
+  --vert-fonce:  #143329;
+  --vert-clair:  #2E6B59;
+  --creme:       #F0E9DA;
+  --creme-doux:  #F7F3E9;
+  --brun:        #7A4E3B;
+  --brun-clair:  #9A6A53;
+  --graphite:    #3F3F3D;
+  --encre:       #1A1A18;
+  --papier:      #FBFAF7;
+  --ligne:       #DED8C9;
+  --gris-texte:  #5C5C58;
+
+  --serif: "Bodoni Moda", "Lora", "Playfair Display", Georgia, serif;
+  --sans:  "Jost", "Poppins", "Century Gothic", system-ui, sans-serif;
+  --mono:  "IBM Plex Mono", "DejaVu Sans Mono", ui-monospace, monospace;
+
+  --e1: .5rem;  --e2: 1rem;   --e3: 1.5rem; --e4: 2.5rem;
+  --e5: 4rem;   --e6: 5.5rem; --e7: 7rem;
+
+  --shell: 1280px;
+  --transition: 420ms cubic-bezier(.2, .7, .3, 1);
+}
+
+/* --- 2. Base ------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--papier);
+  color: var(--encre);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+[id] { scroll-margin-top: 100px; }
+a { color: inherit; }
+
+h1, h2, h3, h4 { margin: 0; font-weight: 400; line-height: 1.08; }
+
+.titre-serif {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -.015em;
+}
+
+.shell { width: 100%; max-width: var(--shell); margin-inline: auto; padding-inline: var(--e3); }
+
+.evite { position: absolute; left: -9999px; }
+.evite:focus {
+  left: var(--e2); top: var(--e2); z-index: 200;
+  background: var(--vert); color: var(--creme);
+  padding: .75rem 1.25rem; border-radius: 2px;
+}
+
+:focus-visible { outline: 3px solid var(--brun); outline-offset: 3px; }
+
+/* --- 3. Signature : la pastille matricule ------------------------------- */
+/* Reprise du numéro cousu sur l'uniforme : fond crème, liseré piqué,
+   caractères mécaniques. Sert de référence produit, d'étiquette de
+   section et de compteur du diaporama.                                    */
+.matricule {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  font-family: var(--mono);
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  background: var(--creme);
+  color: var(--brun);
+  padding: .5em .85em;
+  border-radius: 1px;
+  box-shadow: inset 0 0 0 1px var(--creme), inset 0 0 0 2px rgba(122, 78, 59, .3);
+  position: relative;
+  align-self: flex-start;
+}
+.matricule::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px dashed rgba(122, 78, 59, .45);
+  border-radius: 1px;
+  pointer-events: none;
+}
+.matricule--vert { background: var(--vert); color: var(--creme); box-shadow: inset 0 0 0 2px rgba(240,233,218,.28); }
+.matricule--vert::before { border-color: rgba(240, 233, 218, .4); }
+.matricule--brun { background: var(--brun); color: var(--creme); box-shadow: inset 0 0 0 2px rgba(240,233,218,.28); }
+.matricule--brun::before { border-color: rgba(240, 233, 218, .4); }
+
+/* --- 4. Emplacements d'images ------------------------------------------ */
+/* Déposez le fichier au chemin indiqué : l'image remplace automatiquement
+   le repère. Tant que le fichier est absent, le repère affiche son nom et
+   le format recommandé.                                                    */
+.emplacement {
+  position: relative;
+  overflow: hidden;
+  background: var(--creme);
+  margin: 0;
+}
+.emplacement img { width: 100%; height: 100%; object-fit: cover; }
+.emplacement.est-vide img { display: none; }
+.emplacement.est-vide::after {
+  content: attr(data-nom) " · " attr(data-format);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--e2);
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--brun);
+  background:
+    repeating-linear-gradient(-45deg,
+      transparent 0 14px,
+      rgba(122, 78, 59, .07) 14px 28px);
+  border: 1px dashed rgba(122, 78, 59, .4);
+}
+
+/* Cadre décalé : bloc de couleur en retrait derrière la photo,
+   repris de la composition de la plaquette imprimée. */
+.cadre { position: relative; }
+.cadre::before {
+  content: "";
+  position: absolute;
+  inset: 28px -28px -28px 28px;
+  background: var(--brun);
+  z-index: 0;
+  transition: inset var(--transition);
+}
+.cadre--vert::before { background: var(--vert); }
+.cadre > * { position: relative; z-index: 1; }
+.cadre:hover::before { inset: 20px -20px -20px 20px; }
+
+/* --- 5. Boutons --------------------------------------------------------- */
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: .6em;
+  font-family: var(--sans);
+  font-size: .875rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.05em 1.9em;
+  border: 1px solid currentColor;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+.bouton:hover { transform: translateY(-2px); }
+.bouton--plein { background: var(--brun); border-color: var(--brun); color: var(--creme); }
+.bouton--plein:hover { background: var(--vert); border-color: var(--vert); }
+.bouton--creme { background: var(--creme); border-color: var(--creme); color: var(--vert-fonce); }
+.bouton--creme:hover { background: #fff; border-color: #fff; }
+.bouton--ligne { background: transparent; color: var(--creme); }
+.bouton--ligne:hover { background: var(--creme); color: var(--vert-fonce); }
+.bouton--sombre { background: transparent; color: var(--encre); border-color: var(--encre); }
+.bouton--sombre:hover { background: var(--encre); color: var(--papier); }
+
+/* --- 6. En-tête --------------------------------------------------------- */
+.entete {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--vert);
+  color: var(--creme);
+  border-bottom: 1px solid rgba(240, 233, 218, .16);
+}
+.entete__interieur {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--e3);
+  min-height: 78px;
+}
+.marque { display: flex; align-items: center; gap: .85rem; text-decoration: none; color: var(--creme); }
+.marque__sigle { width: 40px; height: 40px; flex: none; border-radius: 1px; }
+.marque__nom { font-family: var(--serif); font-size: 1.45rem; font-weight: 700; letter-spacing: .01em; line-height: 1; }
+.marque__baseline {
+  display: block;
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: .72rem; letter-spacing: .02em;
+  color: rgba(240, 233, 218, .72);
+  margin-top: .18rem;
+}
+
+.navigation { display: flex; align-items: center; gap: var(--e3); }
+.navigation a {
+  font-size: .8125rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; padding: .4rem 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), color var(--transition);
+  color: rgba(240, 233, 218, .82);
+}
+.navigation a:hover { color: var(--creme); border-bottom-color: var(--creme); }
+.navigation a[aria-current="page"] { color: var(--creme); border-bottom-color: var(--brun-clair); }
+.navigation .bouton { padding: .8em 1.4em; font-size: .75rem; }
+
+.bascule {
+  display: none;
+  background: none; border: 1px solid rgba(240, 233, 218, .4);
+  color: var(--creme); padding: .6rem .9rem; border-radius: 1px;
+  font-family: var(--mono); font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* --- 7. Bandeau d'accueil (diaporama) ----------------------------------- */
+.bandeau { display: grid; grid-template-columns: 44% 56%; background: var(--vert); color: var(--creme); }
+
+.bandeau__texte {
+  padding: var(--e6) clamp(1.5rem, 4vw, 4rem) var(--e6) max(1.5rem, calc((100vw - var(--shell)) / 2 + 1.5rem));
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.bandeau__texte::after {
+  content: ""; position: absolute; right: -44px; top: 50%;
+  width: 88px; height: 88px; background: var(--brun); z-index: 3;
+}
+.bandeau h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 3.6vw, 3.5rem);
+  font-weight: 600; line-height: 1.02; letter-spacing: -.02em;
+  margin: var(--e3) 0 var(--e2);
+}
+.bandeau h1 em { font-style: italic; color: var(--creme); }
+.bandeau__accroche { color: rgba(240, 233, 218, .8); font-size: 1.0625rem; max-width: 40ch; margin: 0 0 var(--e4); }
+.bandeau__actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.bandeau__actions .bouton { padding: .95em 1.5em; font-size: .8125rem; }
+
+/* Diaporama */
+.diapo { position: relative; overflow: hidden; min-height: 620px; background: var(--vert-fonce); }
+.diapo__piste { position: absolute; inset: 0; }
+.diapo__vue {
+  position: absolute; inset: 0;
+  opacity: 0; visibility: hidden;
+  transition: opacity 900ms ease, visibility 900ms;
+}
+.diapo__vue.est-active { opacity: 1; visibility: visible; }
+.diapo__vue .emplacement { position: absolute; inset: 0; }
+.diapo__legende {
+  position: absolute; left: var(--e4); bottom: calc(var(--e4) + 74px); z-index: 4;
+  max-width: 30ch;
+  font-family: var(--serif); font-style: italic; font-size: 1.15rem;
+  color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, .55);
+}
+.diapo__ombre {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(100deg, rgba(20, 51, 41, .55) 0%, rgba(20, 51, 41, .06) 45%, rgba(20, 51, 41, .5) 100%);
+}
+.diapo__barre {
+  position: absolute; left: var(--e4); right: var(--e4); bottom: var(--e4); z-index: 5;
+  display: flex; align-items: center; gap: var(--e3);
+}
+.diapo__puces { display: flex; gap: .6rem; }
+.diapo__puce {
+  width: 34px; height: 3px; padding: 0; border: 0; cursor: pointer;
+  background: rgba(240, 233, 218, .35);
+  transition: background var(--transition);
+}
+.diapo__puce[aria-selected="true"] { background: var(--creme); }
+.diapo__fleches { margin-left: auto; display: flex; gap: .5rem; }
+.diapo__fleche {
+  width: 44px; height: 44px; border: 1px solid rgba(240, 233, 218, .5);
+  background: rgba(20, 51, 41, .35); color: var(--creme);
+  cursor: pointer; border-radius: 1px; font-size: 1rem; line-height: 1;
+  transition: background var(--transition);
+}
+.diapo__fleche:hover { background: var(--brun); border-color: var(--brun); }
+
+/* --- 8. Sections -------------------------------------------------------- */
+.section { padding-block: var(--e7); }
+.section--creme { background: var(--creme-doux); }
+.section--vert { background: var(--vert); color: var(--creme); }
+.section--graphite { background: var(--graphite); color: var(--creme); }
+
+.entete-section { max-width: 62ch; margin-bottom: var(--e5); }
+.entete-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.4vw, 3.1rem);
+  font-weight: 600; letter-spacing: -.02em;
+  margin: var(--e2) 0 var(--e2);
+  color: var(--brun);
+}
+.section--vert .entete-section h2,
+.section--graphite .entete-section h2 { color: var(--creme); }
+.entete-section p { color: var(--gris-texte); margin: 0; font-size: 1.0625rem; }
+.section--vert .entete-section p,
+.section--graphite .entete-section p { color: rgba(240, 233, 218, .78); }
+
+/* Duo texte + image, alternance du débord (repris de la plaquette) */
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+.duo--inverse .duo__media { order: -1; }
+.duo__texte h3 {
+  font-family: var(--serif); font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  font-weight: 600; margin: var(--e2) 0 var(--e2); color: var(--brun);
+}
+.section--vert .duo__texte h3 { color: var(--creme); }
+.duo__texte p { color: var(--gris-texte); }
+.section--vert .duo__texte p { color: rgba(240, 233, 218, .8); }
+
+/* --- 9. Engagements ----------------------------------------------------- */
+.engagements { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--ligne); border: 1px solid var(--ligne); }
+.engagement { background: var(--papier); padding: var(--e4) var(--e3); }
+.section--creme .engagement { background: var(--creme-doux); }
+.engagement h3 {
+  font-family: var(--serif); font-size: 1.3rem; font-weight: 600;
+  margin: var(--e3) 0 .6rem; color: var(--vert);
+}
+.engagement p { margin: 0; font-size: .9375rem; color: var(--gris-texte); }
+
+/* --- 10. Produits ------------------------------------------------------- */
+.produits { display: flex; flex-direction: column; gap: var(--e7); }
+
+.produit { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5.5rem); align-items: center; }
+.produit:nth-child(even) .produit__media { order: -1; }
+.produit__titre {
+  font-family: var(--serif); font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  font-weight: 600; margin: var(--e2) 0 .4rem; color: var(--encre);
+}
+.produit__promesse {
+  font-family: var(--serif); font-style: italic; font-size: 1.15rem;
+  color: var(--brun); margin: 0 0 var(--e2);
+}
+.produit__texte { color: var(--gris-texte); margin: 0 0 var(--e3); }
+
+.fiche { width: 100%; border-collapse: collapse; font-size: .875rem; }
+.fiche caption { text-align: left; font-family: var(--mono); font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brun); padding-bottom: .7rem; }
+.fiche th, .fiche td { text-align: left; padding: .75rem .9rem; border: 1px solid var(--ligne); vertical-align: top; }
+.fiche th { width: 34%; font-weight: 500; background: var(--creme-doux); color: var(--vert-fonce); }
+.fiche td { color: var(--gris-texte); }
+.fiche .prix { font-family: var(--mono); font-weight: 500; color: var(--encre); font-size: .9375rem; }
+
+/* --- 11. Étapes (processus de commande) --------------------------------- */
+.etapes { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--e3); counter-reset: etape; }
+.etape { border-top: 2px solid var(--brun); padding-top: var(--e3); }
+.etape h3 { font-family: var(--sans); font-size: 1.0625rem; font-weight: 500; margin: var(--e2) 0 .5rem; }
+.etape p { margin: 0; font-size: .9375rem; color: var(--gris-texte); }
+.section--vert .etape p { color: rgba(240, 233, 218, .75); }
+.section--vert .etape { border-top-color: var(--brun-clair); }
+
+/* --- 12. Appel à l'action ----------------------------------------------- */
+.appel { background: var(--vert); color: var(--creme); padding-block: var(--e6); position: relative; overflow: hidden; }
+.appel::after {
+  content: ""; position: absolute; right: -90px; top: -90px;
+  width: 320px; height: 320px; border: 1px solid rgba(240, 233, 218, .16); border-radius: 50%;
+}
+.appel__interieur { display: flex; align-items: center; justify-content: space-between; gap: var(--e5); flex-wrap: wrap; position: relative; z-index: 1; }
+.appel h2 { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 600; margin: var(--e2) 0 .6rem; }
+.appel p { margin: 0; color: rgba(240, 233, 218, .78); max-width: 46ch; }
+
+/* --- 13. Formulaire ----------------------------------------------------- */
+.formulaire { display: grid; grid-template-columns: 1fr 1fr; gap: var(--e3) var(--e4); }
+.champ { display: flex; flex-direction: column; gap: .45rem; }
+.champ--large { grid-column: 1 / -1; }
+.champ label { font-family: var(--mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brun); }
+.champ input, .champ select, .champ textarea {
+  font-family: var(--sans); font-size: 1rem; font-weight: 300; color: var(--encre);
+  background: var(--papier);
+  border: 1px solid var(--ligne); border-radius: 1px;
+  padding: .9rem 1rem;
+  transition: border-color var(--transition);
+}
+.champ input:focus, .champ select:focus, .champ textarea:focus { border-color: var(--vert); }
+.champ textarea { min-height: 150px; resize: vertical; }
+.champ__aide { font-size: .8125rem; color: var(--gris-texte); margin: 0; }
+
+.panier { border: 1px solid var(--ligne); border-radius: 1px; padding: var(--e3); background: var(--papier); }
+.panier__ligne { display: grid; grid-template-columns: 1fr 96px; gap: var(--e2); align-items: center; padding: .55rem 0; border-bottom: 1px solid var(--ligne); }
+.panier__ligne:last-child { border-bottom: 0; }
+.panier__ligne span { font-size: .9375rem; }
+.panier__ligne input { width: 100%; padding: .5rem .6rem; font-family: var(--mono); font-size: .875rem; border: 1px solid var(--ligne); border-radius: 1px; background: var(--creme-doux); }
+
+.message { padding: var(--e2) var(--e3); border-left: 3px solid var(--brun); background: var(--creme); font-size: .9375rem; }
+.message[hidden] { display: none; }
+
+/* --- 14. Coordonnées ---------------------------------------------------- */
+.coordonnees { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--e4); }
+.coordonnee h3 { font-family: var(--mono); font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brun); margin-bottom: .6rem; font-weight: 500; }
+.coordonnee p { margin: 0; font-size: 1.0625rem; }
+.coordonnee a { text-decoration: none; border-bottom: 1px solid var(--ligne); }
+.coordonnee a:hover { border-bottom-color: var(--brun); }
+
+/* --- 15. Pied de page --------------------------------------------------- */
+.pied { background: var(--vert-fonce); color: rgba(240, 233, 218, .74); padding-block: var(--e5) var(--e3); font-size: .9375rem; }
+.pied__grille { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: var(--e4); }
+.pied h3 { font-family: var(--mono); font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brun-clair); margin-bottom: var(--e2); font-weight: 500; }
+.pied ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .55rem; }
+.pied a { text-decoration: none; }
+.pied a:hover { color: var(--creme); }
+.pied__bas {
+  margin-top: var(--e5); padding-top: var(--e3);
+  border-top: 1px solid rgba(240, 233, 218, .14);
+  display: flex; justify-content: space-between; gap: var(--e3); flex-wrap: wrap;
+  font-family: var(--mono); font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(240, 233, 218, .5);
+}
+
+/* --- 16. Contenu éditorial (mentions légales) --------------------------- */
+.prose { max-width: 68ch; }
+.prose h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 600; color: var(--brun); margin: var(--e4) 0 var(--e2); }
+.prose h2:first-child { margin-top: 0; }
+.prose p, .prose li { color: var(--gris-texte); }
+.prose ul { padding-left: 1.2rem; }
+.prose li { margin-bottom: .5rem; }
+
+/* --- 17. Révélation au défilement --------------------------------------- */
+.revele { opacity: 0; transform: translateY(14px); transition: opacity 700ms ease, transform 700ms ease; }
+.revele.est-visible { opacity: 1; transform: none; }
+
+/* --- 18. Adaptation aux petits écrans ----------------------------------- */
+@media (max-width: 1040px) {
+  .engagements { grid-template-columns: repeat(2, 1fr); }
+  .etapes { grid-template-columns: repeat(2, 1fr); }
+  .pied__grille { grid-template-columns: 1fr 1fr; }
+  .coordonnees { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 860px) {
+  :root { --e6: 4rem; --e7: 5rem; }
+
+  .bascule { display: block; }
+  .navigation {
+    position: fixed; inset: 78px 0 auto 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--vert-fonce);
+    padding: var(--e2) var(--e3) var(--e4);
+    border-bottom: 1px solid rgba(240, 233, 218, .16);
+    transform: translateY(-140%);
+    transition: transform var(--transition);
+  }
+  .navigation.est-ouverte { transform: none; }
+  .navigation a { padding: 1rem 0; border-bottom: 1px solid rgba(240, 233, 218, .1); }
+  .navigation .bouton { margin-top: var(--e2); justify-content: center; }
+
+  .bandeau { grid-template-columns: 1fr; }
+  .bandeau__texte { padding: var(--e5) var(--e3); order: 2; }
+  .bandeau__texte::after { display: none; }
+  .diapo { min-height: 440px; order: 1; }
+  .diapo__legende { left: var(--e3); bottom: calc(var(--e3) + 70px); font-size: 1rem; }
+  .diapo__barre { left: var(--e3); right: var(--e3); bottom: var(--e3); }
+
+  .duo, .produit, .formulaire { grid-template-columns: 1fr; }
+  .duo--inverse .duo__media, .produit:nth-child(even) .produit__media { order: 0; }
+  .engagements, .etapes, .coordonnees, .pied__grille { grid-template-columns: 1fr; }
+  .cadre::before { inset: 18px -18px -18px 18px; }
+}
+
+@media (max-width: 560px) {
+  .diapo__barre { gap: var(--e2); }
+  .diapo__puces { display: none; }
+  .diapo__fleche { width: 40px; height: 40px; }
+  .bandeau__actions .bouton { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .revele { opacity: 1; transform: none; }
+}
